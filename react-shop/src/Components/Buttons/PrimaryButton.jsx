@@ -1,6 +1,6 @@
-const PrimaryButton = ({text, type}) => {
+const PrimaryButton = ({text, type, url}) => {
     return (
-        <a href="https://kodemia.mx" className={`btn btn-${type}`}>
+        <a href={url} className={`btn btn-${type}`}>
             {text}
         </a>
     );
