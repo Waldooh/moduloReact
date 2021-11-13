@@ -1,10 +1,10 @@
 import React from 'react'
 
-const CardImage = ({url}) => {
+const CardImage = ({imgUrl}) => {
     return (
         <img 
-            src={url}
-            className="Card-img-top" 
+            src={imgUrl}
+            className="card-img-top" 
             alt="..." 
         />
     )

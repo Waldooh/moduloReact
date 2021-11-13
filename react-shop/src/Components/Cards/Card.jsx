@@ -1,24 +1,22 @@
 import PrimaryButton from '../Buttons/PrimaryButton';
-import CardText from './CardText';
+import CardBody from './CardBody';
 import CardTitle from './CardTitle';
-import CardImage from './CardImage'
+import CardImage from './CardImage';
 
-const Card = ({ titulo, img, text, linkBtn }) => {
+const Card = ({ title = 'Sin titulo', img, text, linkBtn, oferta=false }) => {
     return (
-      <div className="card" style={{ width: "18rem" }}>
-
+      <div className="card" style={{ width: '18rem' }}>
         <CardImage 
-          url={img}
+          imgUrl={img}
         />
-          
-          <div class="card-body">
-            <CardTitle titulo={titulo} />
-            <CardText text={text} />
-            <PrimaryButton 
-            text="Comprar" type="success" url={linkBtn} />
-          </div>
+        <div className="card-body">
+          <CardTitle title={title} oferta={oferta} />
+          <CardBody text={text} />
+          <PrimaryButton 
+          text="Comprar" type="primary" url={linkBtn} />
+        </div>
       </div>
     );
   };
 
-  export default Card
+  export default Card;
