@@ -69,9 +69,27 @@ function App() {
   };
 
 
+  let totalQty = 0
+  products.forEach(function(record) {
+    let {qty} = record
+    totalQty = totalQty + qty
+  })
+
+  // console.log(totalQty)
+
+  const onCleanAll = () => {
+    const newProducts = products.map(product => {
+      return { ...product, qty:(product.qty=0) };
+    });
+    setProducts(newProducts);
+  };
+
+
+
   return (
     <div className="App">
-      <ShoppingCar /* qtyTotal={qtyTotal} */ />
+      <ShoppingCar totalQty={totalQty} />
+      <button onClick={onCleanAll}>🗑️</button>
       <div style={catalogStyle}>
         {products.map(({ id, title, qty, like }) => {
           return (
