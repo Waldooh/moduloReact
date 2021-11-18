@@ -1,51 +1,28 @@
-import React, { useState } from 'react'
-
-// const crearEstado = (valorInicial) => {
-//     let valor = valorInicial;
-//     const leerValor = () => valor
-//     const modificarValor = (nuevoValor) => valor = nuevoValor
-//     return [leerValor, modificarValor]
-// }
-
-// const estado = crearEstado(5)
-// const leerValor = estado[0]
-// const modificarValor = estado[1]
-
-// console.log('1.-', leerValor())
-// modificarValor(6)
-// console.log('2.-', leerValor())
-// modificarValor(leerValor()+4)
-// console.log('3.-', leerValor())
-
-
+import React, { useState } from 'react';
+// [valor, modificadorDeValor]
 
 const Counter = () => {
 
-    const [manzanas, setManzanas] = useState(0)
+    const [value, setvalue] = useState(0);
 
+    const handleRestar = () => setvalue(value-1);
+    const handleSumar = () => setvalue(value+1);
+    const handleReset = () => setvalue(0);
 
-    const handleRestar = () => {
-        console.log('restando')
-        setManzanas(manzanas-1)
-    }
-
-    const handleSumar = () => {
-        console.log('sumando')
-        setManzanas(manzanas+1)
-    }
-
-    const handleReset = () => setManzanas(0)
+    const colorLabel = value<1 ? 'red' : value<=3 ? 'orange' : 'green';
+    const label = value<1 ? 'Agotado' : value;
+    const restarDisabled = label === 'Agotado'
 
     return (
         <div>
             <div>
-                <button onClick={handleRestar}>-</button>
-                <span>{manzanas} Manzanas</span>
+                <button disabled={restarDisabled} onClick={handleRestar}>-</button>
+                <span style={{color: colorLabel}}>{label}</span>
                 <button onClick={handleSumar}>+</button>
             </div>
             <button onClick={handleReset}>Reset</button>
         </div>
-    )
-}
+    );
+};
 
 export default Counter;

@@ -3,17 +3,15 @@ import { useState } from 'react'
 const Labels = () => {
     const [ fruta, setFruta ] = useState('Fruta')
 
-    const handlePera = () => setFruta('Pera')
-    const cambiaAManzana = () => setFruta('Manzana')
-    const handleSandia = () => setFruta('Sandía')
+    const handleCambiarFruta = (nombreFruta) => setFruta(nombreFruta)
 
     return (
         <div style={{borderTop: '1px solid black'}}>
             <div>{fruta}</div>
             <div>
-                <button onClick={handlePera}>Pera</button>
-                <button onClick={cambiaAManzana}>Manzana</button>
-                <button onClick={handleSandia}>Sandía</button>
+                <button onClick={() => handleCambiarFruta('Pera')}>Pera</button>
+                <button onClick={() => handleCambiarFruta('Manzana')}>Manzana</button>
+                <button onClick={() => handleCambiarFruta('Sandía')}>Sandía</button>
             </div>
             
         </div>
