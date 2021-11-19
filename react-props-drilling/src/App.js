@@ -70,10 +70,10 @@ function App() {
 
 
   let totalQty = 0
-  products.forEach(function(record) {
-    let {qty} = record
+  products.forEach((accum) => {
+    let {qty} = accum
     totalQty = totalQty + qty
-  })
+  });
 
   // console.log(totalQty)
 
