@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Post from './Post';
 
-const endpoint = "https://jsonplaceholder.typicode.com/posts"
 
 
 
-const Posts = () => {
+const Posts = ({ userId }) => {
+
+    const endpoint = `https://jsonplaceholder.typicode.com/users/${userId}/posts`;
+ 
     const [posts, setPosts] = useState([]);
 
     useEffect(

@@ -1,13 +1,14 @@
 import React from 'react'
+// import Posts from './Posts'
 
-const User = ({name, username, email, website}) => {
+const User = ({id, name, username, email, website}) => {
 
     const userStyle = {
         border: '1px solid gray',
         borderRadius: '10px',
         boxShadow: '4px 4px 20px #555',
         backgroundColor: '#FFF',
-        width: '300px',
+        // width: '300px',
         margin: '10px',
     }
 
@@ -19,6 +20,7 @@ const User = ({name, username, email, website}) => {
                 <p>{email}</p>
                 <p>{website}</p>
             </div>
+            {/* <Posts userId={id} /> */}
         </div>
     )
 }
