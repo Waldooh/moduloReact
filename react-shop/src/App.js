@@ -1,27 +1,22 @@
 import './App.css';
-import Card from './Components/Cards/Card';
-import fetchItems from './Services/fetchItems';
+import { Route, Routes } from 'react-router-dom'
+import Atoles from './Components/Atoles/Atoles';
+import Tamales from './Components/Tamales/Tamales';
+import Navbar from './Components/Navbar';
+import Home from './Components/Home';
 
 
 function App() {
 
-  const items = fetchItems()
-
-  console.log('items', items)
   return (
     <div className="container-fluid">
       <div className="row">
-        {items.map(({ title, img, text, linkBtn, oferta }) => {
-          return (
-            <Card 
-              title={title} 
-              img={img}
-              text={text}
-              linkBtn={linkBtn}
-              oferta={oferta}
-            />
-          );
-        })}
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tamales" element={<Tamales />} />
+          <Route path="/atoles" element={<Atoles />} />        
+        </Routes>
       </div>
     </div>
   );
