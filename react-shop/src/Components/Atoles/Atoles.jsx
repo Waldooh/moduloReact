@@ -27,7 +27,7 @@ const Atoles = () => {
             key={_id}
             title={name}
             imgUrl={img}
-            price={price}
+            price={parseInt(price)}
           />
         )
       })}

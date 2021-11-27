@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom'
 import Atoles from './Components/Atoles/Atoles';
 import Tamales from './Components/Tamales/Tamales';
@@ -8,14 +9,81 @@ import Home from './Components/Home';
 
 function App() {
 
+  const [cartItems, setCartItems] = useState({
+    1: {qty: 1, price: 10},
+    2: {qty: 2, price: 20},
+    3: {qty: 3, price: 30},
+  })
+  
+  const emptyCart = () => setCartItems({})
+
+  const addToCart = (catalogItem) => {
+    const existingItem = cartItems[catalogItem.id];
+    if (!existingItem) {
+      const cart = {
+        ...cartItems,
+        [catalogItem.id]: { qty: 1, price: catalogItem.price },
+      };
+      setCartItems(cart)
+    } else {
+      const cart = {
+        ...cartItems,
+        [catalogItem.id]: {
+          qty: existingItem.qty + 1,
+          price: existingItem.price + catalogItem.price,
+        },
+      };
+      setCartItems(cart)
+    }
+  };
+
+  const removeFromCart = (catalogItem) => {
+    const existingItem = cartItems[catalogItem.id];
+    if (existingItem){
+      if( existingItem.qty <= 1 ){
+        let { [catalogItem.id]: omitir, ...restOfItems  } = cartItems;
+        setCartItems(restOfItems);
+      }
+      else {
+        const cart = {
+          ...cartItems,
+          [catalogItem.id]: {
+            qty: existingItem.qty - 1,
+            price: existingItem.price - catalogItem.price,
+          },
+        };
+        setCartItems(cart)
+      }
+    }
+  };
+
+
   return (
     <div className="container-fluid">
       <div className="row">
-        <Navbar />
+        <Navbar cartItems={cartItems} emptyCart={emptyCart} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/tamales" element={<Tamales />} />
-          <Route path="/atoles" element={<Atoles />} />        
+          <Route 
+            path="/tamales" 
+            element={
+              <Tamales 
+                cartItems={cartItems} 
+                addToCart={addToCart} 
+                removeFromCart={removeFromCart} 
+              />
+            } 
+          />
+          <Route 
+            path="/atoles" 
+            element={
+              <Atoles 
+                cartItems={cartItems} 
+                addToCart={addToCart} 
+                removeFromCart={removeFromCart} 
+              />
+            } 
+          />        
         </Routes>
       </div>
     </div>
